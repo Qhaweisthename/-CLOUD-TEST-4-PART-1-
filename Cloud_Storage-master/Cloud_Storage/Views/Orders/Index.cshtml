@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Order Processing and Inventory Management";
+}
+
+<h2>Order Processing</h2>
+<form asp-action="ProcessOrder" method="post">
+    <div class="form-group">
+        <label for="orderDetails">Order Details:</label>
+        <input type="text" name="orderDetails" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Process Order</button>
+</form>
+
+<h2>Image Upload</h2>
+<form asp-action="UploadImage" method="post">
+    <div class="form-group">
+        <label for="imageName">Image Name:</label>
+        <input type="text" name="imageName" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Upload Image</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success">
+        @ViewBag.Message
+    </div>
+}

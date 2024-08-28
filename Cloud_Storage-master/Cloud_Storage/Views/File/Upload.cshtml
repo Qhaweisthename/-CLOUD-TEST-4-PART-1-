@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Upload Contract or Log File";
+}
+
+<h2>Upload Contract or Log File</h2>
+
+<form asp-action="Upload" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="directoryName">Directory Name:</label>
+        <input type="text" name="directoryName" class="form-control" placeholder="e.g., contracts or logs" />
+    </div>
+    <div class="form-group">
+        <label for="file">Select file to upload:</label>
+        <input type="file" name="file" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+
+@if (ViewBag.Message != null)
+
+{
+    <div class="alert alert-success">
+        @ViewBag.Message
+    </div>
+}

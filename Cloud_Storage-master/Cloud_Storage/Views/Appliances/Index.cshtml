@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Cloud_Storage.Models.Appliances>
+
+<h1>Appliances</h1>
+<a href="@Url.Action("Create", "Appliances")" class="btn btn-primary">Add New Appliance</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appliance in Model)
+
+        {
+            <tr>
+                <td>@appliance.Product_Name</td>
+                <td>@appliance.Description</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(appliance.ImageUrl))
+                    {
+                        <img src="@appliance.ImageUrl" alt="@appliance.Product_Name" style="width:100px;height:auto;" />
+                    }
+                </td>
+                <td>
+                    <form asp-action="DeleteAppliance" method="post" style="display:inline;">
+                        <input type="hidden" name="partitionKey" value="@appliance.PartitionKey" />
+                        <input type="hidden" name="rowKey" value="@appliance.RowKey" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this appliance?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

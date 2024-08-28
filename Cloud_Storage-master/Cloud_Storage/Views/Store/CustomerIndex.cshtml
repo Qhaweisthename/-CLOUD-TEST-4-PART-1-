@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Cloud_Storage.Models.Customer>
+
+<h1>Customer List</h1>
+<a href="@Url.Action("CreateCustomer", "Store")" class="btn btn-primary">Add New Customer</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.Name</td>
+                <td>@customer.Email</td>
+                <td>@customer.PhoneNumber</td>
+                <td>
+                    <form asp-action="DeleteCustomer" method="post" style="display:inline;">
+                        <input type="hidden" name="partitionKey" value="@customer.PartitionKey" />
+                        <input type="hidden" name="rowKey" value="@customer.RowKey" />
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this customer?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
